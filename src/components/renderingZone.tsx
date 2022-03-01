@@ -94,8 +94,6 @@ export class RenderingZone extends React.Component<IRenderingZoneProps> {
       this._engine,
       null,
       (sceneFile: File, scene: Scene) => {
-        // scene.autoClear = false
-        // scene.clearColor = new Color4(0, 0, 0, 0);
         this._scene = scene;
         this.onSceneLoaded(sceneFile.name);
       },

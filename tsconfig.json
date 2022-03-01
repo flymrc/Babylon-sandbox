@@ -7,13 +7,6 @@
     "target": "ES5",
     "strict": true,
     "esModuleInterop": true,
-    // "moduleResolution": "node",
-    // "outDir": "./dist/",
-    // "sourceMap": true,
-    // "noImplicitAny": false,
-    // "allowJs": true,
-    // "baseUrl": "./",
-    // "resolveJsonModule": true
   },
   "exclude": [
     "node_modules"
