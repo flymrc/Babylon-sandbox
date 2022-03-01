@@ -22,8 +22,6 @@ export class GlobalState {
         port: number;
     };
 
-    public skybox = true;
-
     public showDebugLayer() {
         this.isDebugLayerEnabled = true;
         if (this.currentScene) {

@@ -8,9 +8,6 @@ import { EnvironmentTools } from "./tools/environmentTools";
 import { Vector3 } from "@babylonjs/core/Maths/math.vector";
 import { Deferred } from "@babylonjs/core/Misc/deferred";
 import { Scene } from "@babylonjs/core/scene";
-import { CreateScreenshotAsync } from "@babylonjs/core/Misc/screenshotTools";
-import { Tools } from "@babylonjs/core/Misc/tools";
-import { IScreenshotSize } from "@babylonjs/core/Misc/interfaces/screenshotSize";
 import { Color3, Color4 } from "@babylonjs/core/Maths/math";
 
 require("./scss/main.scss");
@@ -172,14 +169,6 @@ export class Sandbox extends React.Component<ISandboxProps, { isFooterVisible: b
             EnvironmentTools.EnvironmentPath = value;
             break;
           }
-          case "skybox": {
-            this._globalState.skybox = value === "true" ? true : false;
-            break;
-          }
-          case "clearColor": {
-            this._clearColor = value;
-            break;
-          }
           case "camera": {
             this._camera = +value;
             break;
@@ -243,17 +232,5 @@ export class Sandbox extends React.Component<ISandboxProps, { isFooterVisible: b
   public static Show(hostElement: HTMLElement): void {
     const sandbox = React.createElement(Sandbox, {});
     ReactDOM.render(sandbox, hostElement);
-  }
-
-  public static CaptureScreenshotAsync(size: IScreenshotSize | number, mimeType?: string): Promise<string> {
-    return this._sceneLoadedDeferred.promise.then((scene) => {
-      return CreateScreenshotAsync(scene.getEngine(), scene.activeCamera!, size, mimeType);
-    });
-  }
-
-  public static CaptureScreenshot(size: IScreenshotSize | number, mimeType?: string): void {
-    this._sceneLoadedDeferred.promise.then((scene) => {
-      Tools.CreateScreenshot(scene.getEngine(), scene.activeCamera!, size);
-    })
   }
 }

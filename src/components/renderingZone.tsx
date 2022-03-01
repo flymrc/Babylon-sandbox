@@ -94,8 +94,6 @@ export class RenderingZone extends React.Component<IRenderingZoneProps> {
       this._engine,
       null,
       (sceneFile: File, scene: Scene) => {
-        // scene.autoClear = false
-        // scene.clearColor = new Color4(0, 0, 0, 0);
         this._scene = scene;
         this.onSceneLoaded(sceneFile.name);
       },
@@ -241,8 +239,29 @@ export class RenderingZone extends React.Component<IRenderingZoneProps> {
   }
 
   prepareLighting() {
-    var light = new HemisphericLight("light1", new Vector3(0, 1, 0), this._scene);
-    light.intensity = 0.7;
+    if (this._currentPluginName === "gltf") {
+      if (!this._scene.environmentTexture) {
+        this._scene.environmentTexture =
+          EnvironmentTools.LoadEnvironmentAndSkybox(this._scene);
+      }
+    } else {
+      var pbrPresent = false;
+      for (const material of this._scene.materials) {
+        if (material instanceof PBRBaseMaterial) {
+          pbrPresent = true;
+          break;
+        }
+      }
+
+      if (pbrPresent) {
+        if (!this._scene.environmentTexture) {
+          this._scene.environmentTexture =
+            EnvironmentTools.LoadEnvironmentTexture(this._scene);
+        }
+      } else {
+        this._scene.createDefaultLight();
+      }
+    }
   }
 
   onSceneLoaded(filename: string) {
