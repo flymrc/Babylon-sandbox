@@ -57,8 +57,7 @@ export class EnvironmentTools {
 
   public static LoadEnvironmentAndSkybox(scene: Scene) {
     this.LoadSkybox(scene);
-    scene.clearColor = new Color4(0, 0, 0, 0);
-    // return this.LoadEnvironmentTexture(scene);
+    return this.LoadEnvironmentTexture(scene);
   }
 
   public static LoadEnvironmentTexture(scene: Scene) {
