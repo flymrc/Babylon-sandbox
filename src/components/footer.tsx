@@ -8,7 +8,6 @@ import { AnimationBar } from "./animationBar";
 import { Nullable } from "@babylonjs/core/types";
 import { KHR_materials_variants } from "@babylonjs/loaders/glTF/2.0/Extensions/KHR_materials_variants";
 import { Mesh } from "@babylonjs/core/Meshes/mesh";
-import { Sandbox } from "../sandbox";
 
 require("../scss/footer.scss");
 var babylonIdentity = require("../img/babylon-identity.svg");
@@ -42,10 +41,6 @@ export class Footer extends React.Component<IFooterProps> {
         this.props.globalState.showDebugLayer();
       }
     }
-  }
-
-  async screenshot() {
-    await Sandbox.CaptureScreenshot(288);
   }
 
   switchCamera(name: string) {
@@ -147,14 +142,6 @@ export class Footer extends React.Component<IFooterProps> {
             icon={iconEdit}
             label="Display inspector"
             onClick={() => this.showInspector()}
-            enabled={!!this.props.globalState.currentScene}
-          />
-
-          <FooterButton
-            globalState={this.props.globalState}
-            icon={iconEdit}
-            label="Screenshot"
-            onClick={() => this.screenshot()}
             enabled={!!this.props.globalState.currentScene}
           />
         </div>
