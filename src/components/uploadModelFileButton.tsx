@@ -11,7 +11,8 @@ interface Props {
   label: string;
 }
 
-const sessionToken = "mxthugco02kqk5dlge1k7wfyu"
+// FIXME: hard code token
+const SESSION_TOKEN = "mxthugco02kqk5dlge1k7wfyu"
 
 export class UploadModelFileButton extends React.Component<Props> {
 
@@ -28,7 +29,7 @@ export class UploadModelFileButton extends React.Component<Props> {
   }
 
   login() {
-    User.become(sessionToken).then(() => {
+    User.become(SESSION_TOKEN).then(() => {
       console.log("login successful")
     }, (error) => {
       console.error("login failed", error)
@@ -41,7 +42,7 @@ export class UploadModelFileButton extends React.Component<Props> {
       const file = fileList[0];
       const avFile = new AV.File(file.name, file);
       await avFile.save();
-      
+
       console.log(avFile);
       console.log(avFile.url());
       alert(avFile.url());
