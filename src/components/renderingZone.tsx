@@ -15,8 +15,6 @@ import { FilesInput } from "@babylonjs/core/Misc/filesInput";
 import { Animation } from "@babylonjs/core/Animations/animation";
 import { PBRBaseMaterial, PBRMaterial, StringTools, Texture } from "@babylonjs/core";
 import { CreatePlane } from "@babylonjs/core/Meshes/Builders/planeBuilder";
-import { Color3, Color4 } from "@babylonjs/core/Maths/math";
-import { HemisphericLight } from "@babylonjs/core";
 
 
 require("../scss/renderingZone.scss");
