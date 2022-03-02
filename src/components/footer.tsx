@@ -2,6 +2,7 @@ import * as React from "react";
 import { GlobalState } from "../globalState";
 import { FooterButton } from "./footerButton";
 import { DropUpButton } from "./dropUpButton";
+import { UploadModelFileButton } from "./uploadModelFileButton";
 import { EnvironmentTools } from "../tools/environmentTools";
 import { FooterFileButton } from "./footerFileButton";
 import { AnimationBar } from "./animationBar";
@@ -15,7 +16,7 @@ var iconEdit = require("../img/icon-edit.svg");
 var iconOpen = require("../img/icon-open.svg");
 var iconIBL = require("../img/icon-ibl.svg");
 // var iconCameras = require("../img/icon-cameras.svg");
-// var iconVariants = require("../img/icon-variants.svg");
+var iconVariants = require("../img/icon-variants.svg");
 var iconSkybox = require("../img/icon-skybox.svg");
 
 interface IFooterProps {
@@ -143,6 +144,12 @@ export class Footer extends React.Component<IFooterProps> {
             label="Display inspector"
             onClick={() => this.showInspector()}
             enabled={!!this.props.globalState.currentScene}
+          />
+          <UploadModelFileButton
+            globalState={this.props.globalState}
+            icon={iconVariants}
+            label="Upload model file"
+            enabled={true}
           />
         </div>
       </div>
