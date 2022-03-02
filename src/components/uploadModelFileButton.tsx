@@ -2,7 +2,7 @@ import * as React from "react";
 import { GlobalState } from "../globalState";
 
 import AV from 'leancloud-storage';
-const { Query, User } = AV;
+const { User } = AV;
 
 interface Props {
   globalState: GlobalState;
@@ -14,6 +14,7 @@ interface Props {
 const sessionToken = "mxthugco02kqk5dlge1k7wfyu"
 
 export class UploadModelFileButton extends React.Component<Props> {
+
   constructor(props: Props) {
     super(props);
 
@@ -27,11 +28,24 @@ export class UploadModelFileButton extends React.Component<Props> {
   }
 
   login() {
-    User.become(sessionToken).then((user) => {
+    User.become(sessionToken).then(() => {
       console.log("login successful")
     }, (error) => {
       console.error("login failed", error)
     });
+  }
+
+  uploadFileInput = async () => {
+    const fileList: File[] | undefined = this.props.globalState.filesInput.filesToLoad;
+    if (fileList) {
+      const file = fileList[0];
+      const avFile = new AV.File(file.name, file);
+      await avFile.save();
+      
+      console.log(avFile);
+      console.log(avFile.url());
+      alert(avFile.url());
+    }
   }
 
   public render() {
@@ -49,6 +63,7 @@ export class UploadModelFileButton extends React.Component<Props> {
               src={this.props.icon}
               alt={this.props.label}
               title={this.props.label}
+              onClick={this.uploadFileInput}
             />
           </div>
         }
